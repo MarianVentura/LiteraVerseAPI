@@ -1,6 +1,47 @@
 @LiteraVerseAPI_HostAddress = http://localhost:5036
 
-GET {{LiteraVerseAPI_HostAddress}}/weatherforecast/
+### Login
+POST {{LiteraVerseAPI_HostAddress}}/api/Auth/Login
+Content-Type: application/json
+
+{
+  "userName": "LiteraVerse_Official",
+  "password": "literaverse2025"
+}
+
+###
+
+### Register
+POST {{LiteraVerseAPI_HostAddress}}/api/Auth/Register
+Content-Type: application/json
+
+{
+  "userName": "test_user",
+  "password": "test1234"
+}
+
+###
+
+### Get All Stories
+GET {{LiteraVerseAPI_HostAddress}}/api/Stories
+Accept: application/json
+
+###
+
+### Get Featured Stories
+GET {{LiteraVerseAPI_HostAddress}}/api/Explore/featured
+Accept: application/json
+
+###
+
+### Search Stories
+GET {{LiteraVerseAPI_HostAddress}}/api/Search?query=The%20Last%20Ember
+Accept: application/json
+
+###
+
+### Get Genres
+GET {{LiteraVerseAPI_HostAddress}}/api/Genres
 Accept: application/json
 
 ###
