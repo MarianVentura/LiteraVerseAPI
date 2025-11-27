@@ -1,0 +1,7 @@
+﻿namespace LiteraVerseApi.DTOs;
+
+public class GenreRequest
+{
+    public required string Name { get; set; }
+    public string? Description { get; set; }
+}
