@@ -60,6 +60,7 @@ public class ChaptersController(
                 .SetProperty(c => c.Title, chapterRequest.Title)
                 .SetProperty(c => c.Content, chapterRequest.Content)
                 .SetProperty(c => c.ChapterNumber, chapterRequest.ChapterNumber)
+                .SetProperty(c => c.IsDraft, chapterRequest.IsDraft)
                 .SetProperty(c => c.UpdatedAt, DateTime.UtcNow)
             );
 
