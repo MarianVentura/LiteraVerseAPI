@@ -1,6 +1,7 @@
 ﻿using LiteraVerseApi.DAL;
 using LiteraVerseApi.DTOs;
 using LiteraVerseApi.Models;
+using LiteraVerseApi.Services;
 using LiteraVerseApi.Utilities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -9,14 +10,23 @@ namespace LiteraVerseApi.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class AuthController(Contexto context) : ControllerBase
+public class AuthController : ControllerBase
 {
+    private readonly Contexto _context;
+    private readonly JwtService _jwtService;
+
+    public AuthController(Contexto context, JwtService jwtService)
+    {
+        _context = context;
+        _jwtService = jwtService;
+    }
+
     [HttpPost("Login")]
     public async Task<ActionResult<LoginResponse>> Login(LoginRequest request)
     {
         var hashedPassword = PasswordHasher.HashPassword(request.Password);
 
-        var usuario = await context.Usuarios
+        var usuario = await _context.Usuarios
             .FirstOrDefaultAsync(u =>
                 u.UserName == request.UserName &&
                 u.Password == hashedPassword);
@@ -26,7 +36,7 @@ public class AuthController(Contexto context) : ControllerBase
             return Unauthorized(new { message = "Usuario o contraseña incorrectos" });
         }
 
-        var token = PasswordHasher.GenerateToken();
+        var token = _jwtService.GenerateToken(usuario.UsuarioId, usuario.UserName);
 
         var session = new Sessions
         {
@@ -38,8 +48,8 @@ public class AuthController(Contexto context) : ControllerBase
             DeviceInfo = Request.Headers.UserAgent.ToString()
         };
 
-        context.Sessions.Add(session);
-        await context.SaveChangesAsync();
+        _context.Sessions.Add(session);
+        await _context.SaveChangesAsync();
 
         var response = new LoginResponse
         {
@@ -55,7 +65,7 @@ public class AuthController(Contexto context) : ControllerBase
     [HttpPost("Register")]
     public async Task<ActionResult<LoginResponse>> Register(RegisterRequest request)
     {
-        var existingUser = await context.Usuarios
+        var existingUser = await _context.Usuarios
             .FirstOrDefaultAsync(u => u.UserName == request.UserName);
 
         if (existingUser != null)
@@ -71,10 +81,10 @@ public class AuthController(Contexto context) : ControllerBase
             Password = hashedPassword
         };
 
-        context.Usuarios.Add(newUser);
-        await context.SaveChangesAsync();
+        _context.Usuarios.Add(newUser);
+        await _context.SaveChangesAsync();
 
-        var token = PasswordHasher.GenerateToken();
+        var token = _jwtService.GenerateToken(newUser.UsuarioId, newUser.UserName);
 
         var session = new Sessions
         {
@@ -86,8 +96,8 @@ public class AuthController(Contexto context) : ControllerBase
             DeviceInfo = Request.Headers.UserAgent.ToString()
         };
 
-        context.Sessions.Add(session);
-        await context.SaveChangesAsync();
+        _context.Sessions.Add(session);
+        await _context.SaveChangesAsync();
 
         var response = new LoginResponse
         {
@@ -103,7 +113,7 @@ public class AuthController(Contexto context) : ControllerBase
     [HttpPost("Logout")]
     public async Task<IActionResult> Logout([FromBody] string token)
     {
-        var session = await context.Sessions
+        var session = await _context.Sessions
             .FirstOrDefaultAsync(s => s.Token == token && s.IsActive);
 
         if (session == null)
@@ -112,34 +122,31 @@ public class AuthController(Contexto context) : ControllerBase
         }
 
         session.IsActive = false;
-        context.Sessions.Update(session);
-        await context.SaveChangesAsync();
+        _context.Sessions.Update(session);
+        await _context.SaveChangesAsync();
 
         return Ok(new { message = "Sesión cerrada exitosamente" });
     }
 
     [HttpPost("ValidateToken")]
-    public async Task<ActionResult<bool>> ValidateToken([FromBody] string token)
+    public ActionResult<object> ValidateToken([FromBody] string token)
     {
-        var session = await context.Sessions
-            .FirstOrDefaultAsync(s => s.Token == token && s.IsActive);
+        var principal = _jwtService.ValidateToken(token);
 
-        if (session == null)
+        if (principal == null)
         {
             return Ok(new { isValid = false, message = "Token inválido o expirado" });
         }
 
-        session.LastActivity = DateTime.UtcNow;
-        context.Sessions.Update(session);
-        await context.SaveChangesAsync();
+        var userId = principal.FindFirst("userId")?.Value;
 
-        return Ok(new { isValid = true, userId = session.UserId });
+        return Ok(new { isValid = true, userId = int.Parse(userId!) });
     }
 
     [HttpGet("Sessions/{userId}")]
     public async Task<ActionResult<IEnumerable<SessionResponse>>> GetUserSessions(int userId)
     {
-        var sessions = await context.Sessions
+        var sessions = await _context.Sessions
             .Where(s => s.UserId == userId && s.IsActive)
             .Select(s => new SessionResponse
             {
@@ -159,7 +166,7 @@ public class AuthController(Contexto context) : ControllerBase
     [HttpPost("LogoutAll/{userId}")]
     public async Task<IActionResult> LogoutAllSessions(int userId)
     {
-        var affected = await context.Sessions
+        var affected = await _context.Sessions
             .Where(s => s.UserId == userId && s.IsActive)
             .ExecuteUpdateAsync(s => s.SetProperty(x => x.IsActive, false));
 
