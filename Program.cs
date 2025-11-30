@@ -1,4 +1,8 @@
 using LiteraVerseApi.DAL;
+using LiteraVerseApi.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 using Mapster;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,8 +25,37 @@ builder.Services.AddCors(options =>
 
 var ConStr = builder.Configuration.GetConnectionString("sqlite");
 builder.Services.AddDbContextFactory<Contexto>(o => o.UseSqlite(ConStr));
+builder.Services.AddScoped<JwtService>();
+
+
 
 builder.Services.AddMapster();
+
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+{
+    var secretKey = builder.Configuration["JwtSettings:SecretKey"];
+    var issuer = builder.Configuration["JwtSettings:Issuer"];
+    var audience = builder.Configuration["JwtSettings:Audience"];
+
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = issuer,
+        ValidAudience = audience,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey!)),
+        ClockSkew = TimeSpan.Zero
+    };
+});
+
+builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
@@ -32,6 +65,7 @@ app.MapOpenApi();
 
 app.UseHttpsRedirection();
 app.UseCors();
+app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 
