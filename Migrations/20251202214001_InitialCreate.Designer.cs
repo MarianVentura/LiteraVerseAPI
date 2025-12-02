@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LiteraVerseAPI.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20251127202420_Inicial")]
-    partial class Inicial
+    [Migration("20251202214001_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -67,105 +67,131 @@ namespace LiteraVerseAPI.Migrations
                         {
                             ChapterId = 1,
                             ChapterNumber = 1,
-                            Content = "La torre de Ébano se alzaba contra el cielo carmesí, última fortaleza de una era olvidada. Lyra despertó sintiendo el calor de la última llama mágica palpitando en su pecho...",
-                            CreatedAt = new DateTime(2024, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Content = "The last ember flickered in the ancient hearth, its crimson glow casting dancing shadows across the stone chamber. Aria pressed her palm against the cold wall, feeling the pulse of old magic fade beneath her fingertips. The elders had warned her this day would come, but she never imagined it would arrive so soon.",
+                            CreatedAt = new DateTime(2024, 11, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDraft = false,
                             IsPublished = true,
-                            PublishedAt = new DateTime(2024, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            PublishedAt = new DateTime(2024, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             StoryId = 1,
-                            Title = "El Despertar",
-                            UpdatedAt = new DateTime(2024, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Title = "The Dying Light",
+                            UpdatedAt = new DateTime(2024, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             ChapterId = 2,
                             ChapterNumber = 2,
-                            Content = "El consejo de magos la miraba con desconfianza. Nadie había despertado el don en más de cincuenta años. ¿Era ella realmente la elegida o solo una ilusión desesperada?",
-                            CreatedAt = new DateTime(2024, 10, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Content = "Legends spoke of a time when fire answered to will alone, when the chosen could summon flames with a thought. Aria traced the ancient runes carved into the hearth's edge, their meaning lost to time but their power still palpable in the air around her.",
+                            CreatedAt = new DateTime(2024, 11, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDraft = false,
                             IsPublished = true,
-                            PublishedAt = new DateTime(2024, 10, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            PublishedAt = new DateTime(2024, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             StoryId = 1,
-                            Title = "Sombras del Pasado",
-                            UpdatedAt = new DateTime(2024, 10, 11, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Title = "Whispers of the Old Magic",
+                            UpdatedAt = new DateTime(2024, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             ChapterId = 3,
                             ChapterNumber = 3,
-                            Content = "Con solo una mochila y un mapa antiguo, Lyra abandonó la seguridad de la torre. El mundo exterior era más peligroso y hermoso de lo que jamás imaginó.",
-                            CreatedAt = new DateTime(2024, 10, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Content = "With nothing but a weathered map and the dying ember carefully preserved in a crystal vial, Aria set out into the Frozen Wastes. The wind howled around her like vengeful spirits, but she pressed forward, knowing that somewhere beyond the ice lay the Temple of First Flames.",
+                            CreatedAt = new DateTime(2024, 11, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDraft = false,
                             IsPublished = true,
-                            PublishedAt = new DateTime(2024, 10, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            PublishedAt = new DateTime(2024, 11, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             StoryId = 1,
-                            Title = "El Viaje Comienza",
-                            UpdatedAt = new DateTime(2024, 10, 12, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Title = "The Journey Begins",
+                            UpdatedAt = new DateTime(2024, 11, 16, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             ChapterId = 4,
                             ChapterNumber = 1,
-                            Content = "El código en la pantalla no tenía sentido. Alex llevaba años hackeando sistemas, pero esto era diferente. Esto era... imposible. El mundo digital comenzaba a desmoronarse.",
-                            CreatedAt = new DateTime(2024, 10, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Content = "The temporal device hummed to life, reality bending around her like ripples in a pond. Dr. Sarah Chen gripped the controls as the laboratory dissolved into streams of light. When the world solidified again, she stood in the same room—but everything was different.",
+                            CreatedAt = new DateTime(2024, 11, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDraft = false,
                             IsPublished = true,
-                            PublishedAt = new DateTime(2024, 10, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            PublishedAt = new DateTime(2024, 11, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             StoryId = 2,
-                            Title = "Desconexión",
-                            UpdatedAt = new DateTime(2024, 10, 25, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Title = "First Jump",
+                            UpdatedAt = new DateTime(2024, 11, 20, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             ChapterId = 5,
                             ChapterNumber = 2,
-                            Content = "Salir de la Matrix no era una metáfora. Era literal. Y la realidad física era un páramo desolado donde la humanidad apenas sobrevivía en bunkers subterráneos.",
-                            CreatedAt = new DateTime(2024, 10, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Content = "The equations didn't lie. Every change she made created divergent timelines, each one branching into infinite possibilities. But some changes—the ones that mattered most—seemed to resist her alterations, as if the universe itself was protecting certain outcomes.",
+                            CreatedAt = new DateTime(2024, 11, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDraft = false,
                             IsPublished = true,
-                            PublishedAt = new DateTime(2024, 10, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            PublishedAt = new DateTime(2024, 11, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             StoryId = 2,
-                            Title = "La Verdad Duele",
-                            UpdatedAt = new DateTime(2024, 10, 26, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Title = "Paradox",
+                            UpdatedAt = new DateTime(2024, 11, 21, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             ChapterId = 6,
                             ChapterNumber = 1,
-                            Content = "La nota apareció debajo de su puerta un martes por la mañana. Papel antiguo, tinta negra, caligrafía perfecta. Las palabras hablaban de su alma de una manera que nadie más había logrado.",
-                            CreatedAt = new DateTime(2024, 11, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Content = "Inspector Morrison surveyed the crime scene through the thick mist that perpetually shrouded Whitehaven. The victim lay exactly like the others—positioned with unnatural precision, a single white rose clutched in lifeless fingers. This was the seventh body in as many weeks.",
+                            CreatedAt = new DateTime(2024, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDraft = false,
                             IsPublished = true,
-                            PublishedAt = new DateTime(2024, 11, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            PublishedAt = new DateTime(2024, 11, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             StoryId = 3,
-                            Title = "El Primer Mensaje",
-                            UpdatedAt = new DateTime(2024, 11, 5, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Title = "Fog and Bone",
+                            UpdatedAt = new DateTime(2024, 11, 25, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             ChapterId = 7,
                             ChapterNumber = 2,
-                            Content = "Emma se obsesionó con encontrar al autor. Cada pista la acercaba más a descubrir una verdad que cambiaría todo lo que creía saber sobre el amor.",
-                            CreatedAt = new DateTime(2024, 11, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Content = "The only common thread between victims was their connection to the old Ashworth estate. Each had worked there at some point—gardeners, servants, tutors. And each had left under mysterious circumstances years before meeting their untimely end.",
+                            CreatedAt = new DateTime(2024, 11, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDraft = false,
                             IsPublished = true,
-                            PublishedAt = new DateTime(2024, 11, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            PublishedAt = new DateTime(2024, 11, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             StoryId = 3,
-                            Title = "Buscando al Poeta",
-                            UpdatedAt = new DateTime(2024, 11, 6, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            Title = "The Rose Garden Mystery",
+                            UpdatedAt = new DateTime(2024, 11, 26, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             ChapterId = 8,
-                            ChapterNumber = 3,
-                            Content = "Cuando finalmente lo vio, entendió por qué había permanecido en las sombras. No era quien esperaba. Era alguien que había estado frente a ella todo el tiempo.",
-                            CreatedAt = new DateTime(2024, 11, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ChapterNumber = 1,
+                            Content = "The wedding season had arrived, and Rosewood Avenue's two flower shops stood directly across from each other like dueling opponents. Maya's Petals and Thornwood Gardens had been competing for the same clients for five years, their rivalry as famous as their arrangements.",
+                            CreatedAt = new DateTime(2024, 11, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDraft = false,
                             IsPublished = true,
-                            PublishedAt = new DateTime(2024, 11, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            StoryId = 3,
-                            Title = "El Encuentro",
-                            UpdatedAt = new DateTime(2024, 11, 7, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                            PublishedAt = new DateTime(2024, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            StoryId = 4,
+                            Title = "Rival Blooms",
+                            UpdatedAt = new DateTime(2024, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ChapterId = 9,
+                            ChapterNumber = 1,
+                            Content = "The star maps ended here, at the edge of explored space. Captain Elena Voss checked her instruments one more time before initiating the quantum jump. Her small vessel, the Cartographer's Dream, shuddered as it pierced the veil into unknown territory.",
+                            CreatedAt = new DateTime(2024, 12, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDraft = false,
+                            IsPublished = true,
+                            PublishedAt = new DateTime(2024, 12, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            StoryId = 5,
+                            Title = "Uncharted Sector",
+                            UpdatedAt = new DateTime(2024, 12, 5, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            ChapterId = 10,
+                            ChapterNumber = 2,
+                            Content = "Three days into uncharted space, the sensors picked up something impossible—a repeating pattern of electromagnetic pulses. Artificial. Deliberate. And according to her dating algorithms, approximately ten thousand years old.",
+                            CreatedAt = new DateTime(2024, 12, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDraft = false,
+                            IsPublished = true,
+                            PublishedAt = new DateTime(2024, 12, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            StoryId = 5,
+                            Title = "The Signal",
+                            UpdatedAt = new DateTime(2024, 12, 6, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
@@ -191,6 +217,22 @@ namespace LiteraVerseAPI.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("CompletedStories");
+
+                    b.HasData(
+                        new
+                        {
+                            CompletedId = 1,
+                            CompletedAt = new DateTime(2024, 11, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            StoryId = 2,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            CompletedId = 2,
+                            CompletedAt = new DateTime(2024, 12, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            StoryId = 4,
+                            UserId = 3
+                        });
                 });
 
             modelBuilder.Entity("LiteraVerseApi.Models.Favorites", b =>
@@ -215,6 +257,43 @@ namespace LiteraVerseAPI.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Favorites");
+
+                    b.HasData(
+                        new
+                        {
+                            FavoriteId = 1,
+                            AddedAt = new DateTime(2024, 11, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            StoryId = 1,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            FavoriteId = 2,
+                            AddedAt = new DateTime(2024, 11, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            StoryId = 3,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            FavoriteId = 3,
+                            AddedAt = new DateTime(2024, 11, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            StoryId = 2,
+                            UserId = 2
+                        },
+                        new
+                        {
+                            FavoriteId = 4,
+                            AddedAt = new DateTime(2024, 11, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            StoryId = 1,
+                            UserId = 3
+                        },
+                        new
+                        {
+                            FavoriteId = 5,
+                            AddedAt = new DateTime(2024, 12, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            StoryId = 5,
+                            UserId = 4
+                        });
                 });
 
             modelBuilder.Entity("LiteraVerseApi.Models.Genres", b =>
@@ -258,43 +337,104 @@ namespace LiteraVerseAPI.Migrations
                         {
                             GenreId = 3,
                             CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Futuros distópicos y tecnología",
+                            Description = "Futuro y tecnología",
                             Name = "Ciencia Ficción"
                         },
                         new
                         {
                             GenreId = 4,
                             CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Enigmas y suspense",
+                            Description = "Suspense e intriga",
                             Name = "Misterio"
                         },
                         new
                         {
                             GenreId = 5,
                             CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Acción y adrenalina",
-                            Name = "Thriller"
+                            Description = "Historias de miedo",
+                            Name = "Terror"
                         },
                         new
                         {
                             GenreId = 6,
                             CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Historias emotivas y profundas",
-                            Name = "Drama"
+                            Description = "Acción y exploración",
+                            Name = "Aventura"
                         },
                         new
                         {
                             GenreId = 7,
                             CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Criaturas sobrenaturales",
-                            Name = "Paranormal"
+                            Description = "Emociones profundas",
+                            Name = "Drama"
+                        });
+                });
+
+            modelBuilder.Entity("LiteraVerseApi.Models.Likes", b =>
+                {
+                    b.Property<int>("LikeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("StoryId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("LikeId");
+
+                    b.HasIndex("StoryId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Likes");
+
+                    b.HasData(
+                        new
+                        {
+                            LikeId = 1,
+                            CreatedAt = new DateTime(2024, 11, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            StoryId = 1,
+                            UserId = 1
                         },
                         new
                         {
-                            GenreId = 8,
-                            CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Historias cotidianas",
-                            Name = "Slice of Life"
+                            LikeId = 2,
+                            CreatedAt = new DateTime(2024, 11, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            StoryId = 2,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            LikeId = 3,
+                            CreatedAt = new DateTime(2024, 11, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            StoryId = 1,
+                            UserId = 2
+                        },
+                        new
+                        {
+                            LikeId = 4,
+                            CreatedAt = new DateTime(2024, 11, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            StoryId = 3,
+                            UserId = 3
+                        },
+                        new
+                        {
+                            LikeId = 5,
+                            CreatedAt = new DateTime(2024, 11, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            StoryId = 1,
+                            UserId = 4
+                        },
+                        new
+                        {
+                            LikeId = 6,
+                            CreatedAt = new DateTime(2024, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            StoryId = 2,
+                            UserId = 5
                         });
                 });
 
@@ -365,6 +505,44 @@ namespace LiteraVerseAPI.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("ReadingProgress");
+
+                    b.HasData(
+                        new
+                        {
+                            ProgressId = 1,
+                            ChapterId = 2,
+                            LastReadAt = new DateTime(2024, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ScrollPosition = 0.34999999999999998,
+                            StoryId = 1,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            ProgressId = 2,
+                            ChapterId = 1,
+                            LastReadAt = new DateTime(2024, 11, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ScrollPosition = 0.80000000000000004,
+                            StoryId = 3,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            ProgressId = 3,
+                            ChapterId = 2,
+                            LastReadAt = new DateTime(2024, 12, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ScrollPosition = 0.14999999999999999,
+                            StoryId = 2,
+                            UserId = 2
+                        },
+                        new
+                        {
+                            ProgressId = 4,
+                            ChapterId = 3,
+                            LastReadAt = new DateTime(2024, 11, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ScrollPosition = 0.94999999999999996,
+                            StoryId = 1,
+                            UserId = 3
+                        });
                 });
 
             modelBuilder.Entity("LiteraVerseApi.Models.Sessions", b =>
@@ -493,162 +671,130 @@ namespace LiteraVerseAPI.Migrations
                         new
                         {
                             StoryId = 1,
-                            CoverImageUrl = "https://images.unsplash.com/photo-1518709268805-4e9042af9f23",
-                            CreatedAt = new DateTime(2024, 10, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CoverImageUrl = "https://picsum.photos/seed/ember/400/600",
+                            CreatedAt = new DateTime(2024, 11, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Genre = "Fantasía",
                             IsDraft = false,
                             IsPublished = true,
-                            PublishedAt = new DateTime(2024, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Synopsis = "En un mundo donde la magia se extingue, una joven hechicera debe encontrar la última llama ancestral antes de que caiga en manos equivocadas. Una épica aventura llena de magia, traición y redención.",
-                            Tags = "magia,aventura,medieval",
+                            PublishedAt = new DateTime(2024, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Synopsis = "In a world where magic is dying, one girl must reignite the ancient flames.",
+                            Tags = "magic, adventure, young adult",
                             Title = "The Last Ember",
-                            UpdatedAt = new DateTime(2024, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UpdatedAt = new DateTime(2024, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserId = 2,
-                            ViewCount = 15420
+                            ViewCount = 1523
                         },
                         new
                         {
                             StoryId = 2,
-                            CoverImageUrl = "https://images.unsplash.com/photo-1614732414444-096e5f1122d5",
-                            CreatedAt = new DateTime(2024, 10, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CoverImageUrl = "https://picsum.photos/seed/echoes/400/600",
+                            CreatedAt = new DateTime(2024, 11, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Genre = "Ciencia Ficción",
                             IsDraft = false,
                             IsPublished = true,
-                            PublishedAt = new DateTime(2024, 10, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Synopsis = "En el año 2157, la humanidad vive en una realidad virtual permanente. Alex, un hacker rebelde, descubre que todo es una simulación y debe elegir entre la verdad dolorosa o la mentira confortable.",
-                            Tags = "cyberpunk,distopía,IA",
-                            Title = "Digital Fate",
-                            UpdatedAt = new DateTime(2024, 10, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UserId = 4,
-                            ViewCount = 12890
+                            PublishedAt = new DateTime(2024, 11, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Synopsis = "A time traveler discovers that changing the past comes with impossible choices.",
+                            Tags = "time travel, sci-fi, thriller",
+                            Title = "Echoes of Tomorrow",
+                            UpdatedAt = new DateTime(2024, 11, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = 3,
+                            ViewCount = 892
                         },
                         new
                         {
                             StoryId = 3,
-                            CoverImageUrl = "https://images.unsplash.com/photo-1516979187457-637abb4f9353",
-                            CreatedAt = new DateTime(2024, 10, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Genre = "Romance",
+                            CoverImageUrl = "https://picsum.photos/seed/shadows/400/600",
+                            CreatedAt = new DateTime(2024, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Genre = "Misterio",
                             IsDraft = false,
                             IsPublished = true,
-                            PublishedAt = new DateTime(2024, 11, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Synopsis = "Emma, una artista solitaria, comienza a recibir mensajes anónimos llenos de poesía. Cuando descubre la identidad del remitente, su vida cambiará para siempre. Una historia de amor inesperado.",
-                            Tags = "amor,misterio,contemporáneo",
-                            Title = "Midnight Whispers",
-                            UpdatedAt = new DateTime(2024, 11, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UserId = 5,
-                            ViewCount = 18750
+                            PublishedAt = new DateTime(2024, 11, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Synopsis = "A detective investigates a series of murders in a fog-covered Victorian town.",
+                            Tags = "detective, mystery, victorian",
+                            Title = "Shadows in the Mist",
+                            UpdatedAt = new DateTime(2024, 11, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = 4,
+                            ViewCount = 1205
                         },
                         new
                         {
                             StoryId = 4,
-                            CoverImageUrl = "https://images.unsplash.com/photo-1505682634904-d7c8d95cdc50",
-                            CreatedAt = new DateTime(2024, 11, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Genre = "Misterio",
+                            CoverImageUrl = "https://picsum.photos/seed/hearts/400/600",
+                            CreatedAt = new DateTime(2024, 11, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Genre = "Romance",
                             IsDraft = false,
                             IsPublished = true,
-                            PublishedAt = new DateTime(2024, 11, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Synopsis = "Una detective es llamada para resolver una serie de asesinatos conectados por un símbolo antiguo. La verdad la llevará a descubrir secretos que la humanidad olvidó hace milenios.",
-                            Tags = "detective,crimen,sobrenatural",
-                            Title = "Echoes of the Void",
-                            UpdatedAt = new DateTime(2024, 11, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UserId = 3,
-                            ViewCount = 9340
+                            PublishedAt = new DateTime(2024, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Synopsis = "Two rival florists find unexpected love during the busiest season of the year.",
+                            Tags = "romance, contemporary, feel-good",
+                            Title = "Hearts in Bloom",
+                            UpdatedAt = new DateTime(2024, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = 2,
+                            ViewCount = 756
                         },
                         new
                         {
                             StoryId = 5,
-                            CoverImageUrl = "https://images.unsplash.com/photo-1550745165-9bc0b252726f",
-                            CreatedAt = new DateTime(2024, 11, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Genre = "Thriller",
+                            CoverImageUrl = "https://picsum.photos/seed/stellar/400/600",
+                            CreatedAt = new DateTime(2024, 12, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Genre = "Ciencia Ficción",
                             IsDraft = false,
                             IsPublished = true,
-                            PublishedAt = new DateTime(2024, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Synopsis = "En las calles iluminadas por neones de Nueva Tokio, un asesino a sueldo recibe un contrato que lo obligará a enfrentar su pasado. Acción frenética y dilemas morales en cada página.",
-                            Tags = "acción,noir,urbano",
-                            Title = "Neon Souls",
-                            UpdatedAt = new DateTime(2024, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UserId = 4,
-                            ViewCount = 11200
+                            PublishedAt = new DateTime(2024, 12, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Synopsis = "Mapping uncharted space, a lone explorer finds a civilization that shouldn't exist.",
+                            Tags = "space, exploration, first contact",
+                            Title = "The Stellar Cartographer",
+                            UpdatedAt = new DateTime(2024, 12, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = 5,
+                            ViewCount = 423
                         },
                         new
                         {
                             StoryId = 6,
-                            CoverImageUrl = "https://images.unsplash.com/photo-1509023464722-18d996393ca8",
-                            CreatedAt = new DateTime(2024, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Genre = "Paranormal",
+                            CoverImageUrl = "https://picsum.photos/seed/crimson/400/600",
+                            CreatedAt = new DateTime(2024, 12, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Genre = "Romance",
                             IsDraft = false,
                             IsPublished = true,
-                            PublishedAt = new DateTime(2024, 11, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Synopsis = "Luna siempre supo que era diferente, pero cuando descubre que es una loba alfa en un mundo donde su especie se creía extinta, deberá liderar una revolución o ver a los suyos desaparecer para siempre.",
-                            Tags = "hombres lobo,fantasía,romance",
-                            Title = "Beneath the Silver Moon",
-                            UpdatedAt = new DateTime(2024, 11, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UserId = 2,
-                            ViewCount = 16500
+                            PublishedAt = new DateTime(2024, 12, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Synopsis = "A forbidden romance blooms between a royal guard and a mysterious artist.",
+                            Tags = "forbidden love, historical, drama",
+                            Title = "Crimson Petals",
+                            UpdatedAt = new DateTime(2024, 12, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = 3,
+                            ViewCount = 1098
                         },
                         new
                         {
                             StoryId = 7,
-                            CoverImageUrl = "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085",
-                            CreatedAt = new DateTime(2024, 11, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Genre = "Slice of Life",
+                            CoverImageUrl = "https://picsum.photos/seed/haunting/400/600",
+                            CreatedAt = new DateTime(2024, 12, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Genre = "Terror",
                             IsDraft = false,
                             IsPublished = true,
-                            PublishedAt = new DateTime(2024, 11, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Synopsis = "Sarah trabaja en una cafetería donde cada cliente tiene una historia que contar. A través de conversaciones cotidianas, descubre el verdadero significado de la conexión humana.",
-                            Tags = "cotidiano,inspirador,realista",
-                            Title = "Coffee and Conversations",
-                            UpdatedAt = new DateTime(2024, 11, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UserId = 5,
-                            ViewCount = 7890
+                            PublishedAt = new DateTime(2024, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Synopsis = "A paranormal investigator faces her darkest fears in an abandoned mansion.",
+                            Tags = "ghosts, paranormal, suspense",
+                            Title = "The Haunting of Ashwood Manor",
+                            UpdatedAt = new DateTime(2024, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = 4,
+                            ViewCount = 654
                         },
                         new
                         {
                             StoryId = 8,
-                            CoverImageUrl = "https://images.unsplash.com/photo-1519558260268-cde7e03a0152",
-                            CreatedAt = new DateTime(2024, 11, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Genre = "Fantasía",
+                            CoverImageUrl = "https://picsum.photos/seed/horizon/400/600",
+                            CreatedAt = new DateTime(2024, 12, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Genre = "Aventura",
                             IsDraft = false,
                             IsPublished = true,
-                            PublishedAt = new DateTime(2024, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Synopsis = "Tres reinos en guerra, una profecía olvidada y un guerrero sin memoria que podría ser la clave para la paz... o la destrucción total. Fantasía épica en su máxima expresión.",
-                            Tags = "épico,guerra,magia",
-                            Title = "Shattered Kingdoms",
-                            UpdatedAt = new DateTime(2024, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UserId = 3,
-                            ViewCount = 14300
-                        },
-                        new
-                        {
-                            StoryId = 9,
-                            CoverImageUrl = "https://images.unsplash.com/photo-1481026469463-66327c86e544",
-                            CreatedAt = new DateTime(2024, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Genre = "Thriller",
-                            IsDraft = false,
-                            IsPublished = true,
-                            PublishedAt = new DateTime(2024, 11, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Synopsis = "Una niña muda es la única testigo de un crimen brutal. Cuando el asesino descubre su existencia, comienza una carrera contra el tiempo para protegerla antes de que sea demasiado tarde.",
-                            Tags = "suspense,crimen,psicológico",
-                            Title = "The Silent Witness",
-                            UpdatedAt = new DateTime(2024, 11, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UserId = 1,
-                            ViewCount = 10560
-                        },
-                        new
-                        {
-                            StoryId = 10,
-                            CoverImageUrl = "https://images.unsplash.com/photo-1518133910853-2e5f8bb15a98",
-                            CreatedAt = new DateTime(2024, 11, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Genre = "Romance",
-                            IsDraft = false,
-                            IsPublished = true,
-                            PublishedAt = new DateTime(2024, 11, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Synopsis = "Una carta antigua lleva a Clara a descubrir una historia de amor del siglo XIX. Mientras investiga, encuentra paralelismos inquietantes con su propia vida. ¿El amor puede trascender el tiempo?",
-                            Tags = "viajes en el tiempo,histórico,drama",
-                            Title = "Hearts Across Time",
-                            UpdatedAt = new DateTime(2024, 11, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            UserId = 1,
-                            ViewCount = 13200
+                            PublishedAt = new DateTime(2024, 12, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Synopsis = "A sailor discovers an island that exists in multiple dimensions simultaneously.",
+                            Tags = "sailing, dimensional travel, discovery",
+                            Title = "Beyond the Horizon",
+                            UpdatedAt = new DateTime(2024, 12, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            UserId = 5,
+                            ViewCount = 387
                         });
                 });
 
@@ -674,31 +820,31 @@ namespace LiteraVerseAPI.Migrations
                         new
                         {
                             UsuarioId = 1,
-                            Password = "jGl25bVBBBW96Qi9Te4V37Fnqchz/Eu4qB9vKrRIqRg=",
+                            Password = "QAOVwOV/Bndoor3AQeQYOpIqcviPc1LJSkPvUPQ3q6g=",
                             UserName = "LiteraVerse_Official"
                         },
                         new
                         {
                             UsuarioId = 2,
-                            Password = "YlF8jKPfIAL+L2dmxe9OhwRK9yUoNQcwJw9aKqLQe3M=",
+                            Password = "grgljYV59mvdK6VNaADThLQroi4QSKj0/7XVyPsLTWk=",
                             UserName = "MidnightInk"
                         },
                         new
                         {
                             UsuarioId = 3,
-                            Password = "bQTNz5rIfLKQVEBkr+/8CsVJfQVcXJIbLxYBQnPFqKI=",
+                            Password = "092udNnc17LMlwKrOXdNiCpIUouKdXzorZ3IcUG5aWw=",
                             UserName = "PhoenixQuill"
                         },
                         new
                         {
                             UsuarioId = 4,
-                            Password = "Xkn5dNH5VKLzLqKEJ1vJ8q/wqfKIIHlJ5ksH8xQm8pM=",
+                            Password = "kz0rB4+yE1za3irVPYPkcZXEvUKNJCiVfbDZkWxdkhk=",
                             UserName = "ShadowScribe"
                         },
                         new
                         {
                             UsuarioId = 5,
-                            Password = "YNQwZLHvLZK+5qKEJ1vJ8q/wqfKIIHlJ5ksH8xQm8pM=",
+                            Password = "HxCGc1WiqN+BGBbZxaP8U40hTh7fhIiYEVUEeLqwE+k=",
                             UserName = "StardustWords"
                         });
                 });
@@ -734,6 +880,25 @@ namespace LiteraVerseAPI.Migrations
                 });
 
             modelBuilder.Entity("LiteraVerseApi.Models.Favorites", b =>
+                {
+                    b.HasOne("LiteraVerseApi.Models.Stories", "Story")
+                        .WithMany()
+                        .HasForeignKey("StoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("LiteraVerseApi.Models.Usuarios", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Story");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("LiteraVerseApi.Models.Likes", b =>
                 {
                     b.HasOne("LiteraVerseApi.Models.Stories", "Story")
                         .WithMany()

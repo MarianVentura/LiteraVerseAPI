@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace LiteraVerseAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class Inicial : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -221,6 +221,33 @@ namespace LiteraVerseAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Likes",
+                columns: table => new
+                {
+                    LikeId = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    UserId = table.Column<int>(type: "INTEGER", nullable: false),
+                    StoryId = table.Column<int>(type: "INTEGER", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Likes", x => x.LikeId);
+                    table.ForeignKey(
+                        name: "FK_Likes_Stories_StoryId",
+                        column: x => x.StoryId,
+                        principalTable: "Stories",
+                        principalColumn: "StoryId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Likes_Usuarios_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Usuarios",
+                        principalColumn: "UsuarioId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ReadingProgress",
                 columns: table => new
                 {
@@ -262,12 +289,11 @@ namespace LiteraVerseAPI.Migrations
                 {
                     { 1, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Mundos mágicos y aventuras épicas", "Fantasía" },
                     { 2, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Historias de amor y relaciones", "Romance" },
-                    { 3, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Futuros distópicos y tecnología", "Ciencia Ficción" },
-                    { 4, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Enigmas y suspense", "Misterio" },
-                    { 5, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Acción y adrenalina", "Thriller" },
-                    { 6, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Historias emotivas y profundas", "Drama" },
-                    { 7, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Criaturas sobrenaturales", "Paranormal" },
-                    { 8, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Historias cotidianas", "Slice of Life" }
+                    { 3, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Futuro y tecnología", "Ciencia Ficción" },
+                    { 4, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Suspense e intriga", "Misterio" },
+                    { 5, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Historias de miedo", "Terror" },
+                    { 6, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Acción y exploración", "Aventura" },
+                    { 7, new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Emociones profundas", "Drama" }
                 });
 
             migrationBuilder.InsertData(
@@ -275,11 +301,11 @@ namespace LiteraVerseAPI.Migrations
                 columns: new[] { "UsuarioId", "Password", "UserName" },
                 values: new object[,]
                 {
-                    { 1, "jGl25bVBBBW96Qi9Te4V37Fnqchz/Eu4qB9vKrRIqRg=", "LiteraVerse_Official" },
-                    { 2, "YlF8jKPfIAL+L2dmxe9OhwRK9yUoNQcwJw9aKqLQe3M=", "MidnightInk" },
-                    { 3, "bQTNz5rIfLKQVEBkr+/8CsVJfQVcXJIbLxYBQnPFqKI=", "PhoenixQuill" },
-                    { 4, "Xkn5dNH5VKLzLqKEJ1vJ8q/wqfKIIHlJ5ksH8xQm8pM=", "ShadowScribe" },
-                    { 5, "YNQwZLHvLZK+5qKEJ1vJ8q/wqfKIIHlJ5ksH8xQm8pM=", "StardustWords" }
+                    { 1, "QAOVwOV/Bndoor3AQeQYOpIqcviPc1LJSkPvUPQ3q6g=", "LiteraVerse_Official" },
+                    { 2, "grgljYV59mvdK6VNaADThLQroi4QSKj0/7XVyPsLTWk=", "MidnightInk" },
+                    { 3, "092udNnc17LMlwKrOXdNiCpIUouKdXzorZ3IcUG5aWw=", "PhoenixQuill" },
+                    { 4, "kz0rB4+yE1za3irVPYPkcZXEvUKNJCiVfbDZkWxdkhk=", "ShadowScribe" },
+                    { 5, "HxCGc1WiqN+BGBbZxaP8U40hTh7fhIiYEVUEeLqwE+k=", "StardustWords" }
                 });
 
             migrationBuilder.InsertData(
@@ -287,16 +313,14 @@ namespace LiteraVerseAPI.Migrations
                 columns: new[] { "StoryId", "CoverImageUrl", "CreatedAt", "Genre", "IsDraft", "IsPublished", "PublishedAt", "Synopsis", "Tags", "Title", "UpdatedAt", "UserId", "ViewCount" },
                 values: new object[,]
                 {
-                    { 1, "https://images.unsplash.com/photo-1518709268805-4e9042af9f23", new DateTime(2024, 10, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "Fantasía", false, true, new DateTime(2024, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "En un mundo donde la magia se extingue, una joven hechicera debe encontrar la última llama ancestral antes de que caiga en manos equivocadas. Una épica aventura llena de magia, traición y redención.", "magia,aventura,medieval", "The Last Ember", new DateTime(2024, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 15420 },
-                    { 2, "https://images.unsplash.com/photo-1614732414444-096e5f1122d5", new DateTime(2024, 10, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "Ciencia Ficción", false, true, new DateTime(2024, 10, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "En el año 2157, la humanidad vive en una realidad virtual permanente. Alex, un hacker rebelde, descubre que todo es una simulación y debe elegir entre la verdad dolorosa o la mentira confortable.", "cyberpunk,distopía,IA", "Digital Fate", new DateTime(2024, 10, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), 4, 12890 },
-                    { 3, "https://images.unsplash.com/photo-1516979187457-637abb4f9353", new DateTime(2024, 10, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "Romance", false, true, new DateTime(2024, 11, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "Emma, una artista solitaria, comienza a recibir mensajes anónimos llenos de poesía. Cuando descubre la identidad del remitente, su vida cambiará para siempre. Una historia de amor inesperado.", "amor,misterio,contemporáneo", "Midnight Whispers", new DateTime(2024, 11, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 5, 18750 },
-                    { 4, "https://images.unsplash.com/photo-1505682634904-d7c8d95cdc50", new DateTime(2024, 11, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), "Misterio", false, true, new DateTime(2024, 11, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "Una detective es llamada para resolver una serie de asesinatos conectados por un símbolo antiguo. La verdad la llevará a descubrir secretos que la humanidad olvidó hace milenios.", "detective,crimen,sobrenatural", "Echoes of the Void", new DateTime(2024, 11, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, 9340 },
-                    { 5, "https://images.unsplash.com/photo-1550745165-9bc0b252726f", new DateTime(2024, 11, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), "Thriller", false, true, new DateTime(2024, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "En las calles iluminadas por neones de Nueva Tokio, un asesino a sueldo recibe un contrato que lo obligará a enfrentar su pasado. Acción frenética y dilemas morales en cada página.", "acción,noir,urbano", "Neon Souls", new DateTime(2024, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), 4, 11200 },
-                    { 6, "https://images.unsplash.com/photo-1509023464722-18d996393ca8", new DateTime(2024, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "Paranormal", false, true, new DateTime(2024, 11, 17, 0, 0, 0, 0, DateTimeKind.Unspecified), "Luna siempre supo que era diferente, pero cuando descubre que es una loba alfa en un mundo donde su especie se creía extinta, deberá liderar una revolución o ver a los suyos desaparecer para siempre.", "hombres lobo,fantasía,romance", "Beneath the Silver Moon", new DateTime(2024, 11, 17, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 16500 },
-                    { 7, "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085", new DateTime(2024, 11, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), "Slice of Life", false, true, new DateTime(2024, 11, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "Sarah trabaja en una cafetería donde cada cliente tiene una historia que contar. A través de conversaciones cotidianas, descubre el verdadero significado de la conexión humana.", "cotidiano,inspirador,realista", "Coffee and Conversations", new DateTime(2024, 11, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), 5, 7890 },
-                    { 8, "https://images.unsplash.com/photo-1519558260268-cde7e03a0152", new DateTime(2024, 11, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "Fantasía", false, true, new DateTime(2024, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), "Tres reinos en guerra, una profecía olvidada y un guerrero sin memoria que podría ser la clave para la paz... o la destrucción total. Fantasía épica en su máxima expresión.", "épico,guerra,magia", "Shattered Kingdoms", new DateTime(2024, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, 14300 },
-                    { 9, "https://images.unsplash.com/photo-1481026469463-66327c86e544", new DateTime(2024, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), "Thriller", false, true, new DateTime(2024, 11, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), "Una niña muda es la única testigo de un crimen brutal. Cuando el asesino descubre su existencia, comienza una carrera contra el tiempo para protegerla antes de que sea demasiado tarde.", "suspense,crimen,psicológico", "The Silent Witness", new DateTime(2024, 11, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 10560 },
-                    { 10, "https://images.unsplash.com/photo-1518133910853-2e5f8bb15a98", new DateTime(2024, 11, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), "Romance", false, true, new DateTime(2024, 11, 24, 0, 0, 0, 0, DateTimeKind.Unspecified), "Una carta antigua lleva a Clara a descubrir una historia de amor del siglo XIX. Mientras investiga, encuentra paralelismos inquietantes con su propia vida. ¿El amor puede trascender el tiempo?", "viajes en el tiempo,histórico,drama", "Hearts Across Time", new DateTime(2024, 11, 24, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 13200 }
+                    { 1, "https://picsum.photos/seed/ember/400/600", new DateTime(2024, 11, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "Fantasía", false, true, new DateTime(2024, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "In a world where magic is dying, one girl must reignite the ancient flames.", "magic, adventure, young adult", "The Last Ember", new DateTime(2024, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 1523 },
+                    { 2, "https://picsum.photos/seed/echoes/400/600", new DateTime(2024, 11, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), "Ciencia Ficción", false, true, new DateTime(2024, 11, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "A time traveler discovers that changing the past comes with impossible choices.", "time travel, sci-fi, thriller", "Echoes of Tomorrow", new DateTime(2024, 11, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, 892 },
+                    { 3, "https://picsum.photos/seed/shadows/400/600", new DateTime(2024, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), "Misterio", false, true, new DateTime(2024, 11, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "A detective investigates a series of murders in a fog-covered Victorian town.", "detective, mystery, victorian", "Shadows in the Mist", new DateTime(2024, 11, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), 4, 1205 },
+                    { 4, "https://picsum.photos/seed/hearts/400/600", new DateTime(2024, 11, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), "Romance", false, true, new DateTime(2024, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Two rival florists find unexpected love during the busiest season of the year.", "romance, contemporary, feel-good", "Hearts in Bloom", new DateTime(2024, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 756 },
+                    { 5, "https://picsum.photos/seed/stellar/400/600", new DateTime(2024, 12, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "Ciencia Ficción", false, true, new DateTime(2024, 12, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "Mapping uncharted space, a lone explorer finds a civilization that shouldn't exist.", "space, exploration, first contact", "The Stellar Cartographer", new DateTime(2024, 12, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 5, 423 },
+                    { 6, "https://picsum.photos/seed/crimson/400/600", new DateTime(2024, 12, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "Romance", false, true, new DateTime(2024, 12, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), "A forbidden romance blooms between a royal guard and a mysterious artist.", "forbidden love, historical, drama", "Crimson Petals", new DateTime(2024, 12, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, 1098 },
+                    { 7, "https://picsum.photos/seed/haunting/400/600", new DateTime(2024, 12, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), "Terror", false, true, new DateTime(2024, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "A paranormal investigator faces her darkest fears in an abandoned mansion.", "ghosts, paranormal, suspense", "The Haunting of Ashwood Manor", new DateTime(2024, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 4, 654 },
+                    { 8, "https://picsum.photos/seed/horizon/400/600", new DateTime(2024, 12, 9, 0, 0, 0, 0, DateTimeKind.Unspecified), "Aventura", false, true, new DateTime(2024, 12, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), "A sailor discovers an island that exists in multiple dimensions simultaneously.", "sailing, dimensional travel, discovery", "Beyond the Horizon", new DateTime(2024, 12, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), 5, 387 }
                 });
 
             migrationBuilder.InsertData(
@@ -304,14 +328,61 @@ namespace LiteraVerseAPI.Migrations
                 columns: new[] { "ChapterId", "ChapterNumber", "Content", "CreatedAt", "IsDraft", "IsPublished", "PublishedAt", "StoryId", "Title", "UpdatedAt" },
                 values: new object[,]
                 {
-                    { 1, 1, "La torre de Ébano se alzaba contra el cielo carmesí, última fortaleza de una era olvidada. Lyra despertó sintiendo el calor de la última llama mágica palpitando en su pecho...", new DateTime(2024, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), false, true, new DateTime(2024, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "El Despertar", new DateTime(2024, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 2, 2, "El consejo de magos la miraba con desconfianza. Nadie había despertado el don en más de cincuenta años. ¿Era ella realmente la elegida o solo una ilusión desesperada?", new DateTime(2024, 10, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), false, true, new DateTime(2024, 10, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Sombras del Pasado", new DateTime(2024, 10, 11, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 3, 3, "Con solo una mochila y un mapa antiguo, Lyra abandonó la seguridad de la torre. El mundo exterior era más peligroso y hermoso de lo que jamás imaginó.", new DateTime(2024, 10, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), false, true, new DateTime(2024, 10, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "El Viaje Comienza", new DateTime(2024, 10, 12, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 4, 1, "El código en la pantalla no tenía sentido. Alex llevaba años hackeando sistemas, pero esto era diferente. Esto era... imposible. El mundo digital comenzaba a desmoronarse.", new DateTime(2024, 10, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), false, true, new DateTime(2024, 10, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "Desconexión", new DateTime(2024, 10, 25, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 5, 2, "Salir de la Matrix no era una metáfora. Era literal. Y la realidad física era un páramo desolado donde la humanidad apenas sobrevivía en bunkers subterráneos.", new DateTime(2024, 10, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), false, true, new DateTime(2024, 10, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "La Verdad Duele", new DateTime(2024, 10, 26, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 6, 1, "La nota apareció debajo de su puerta un martes por la mañana. Papel antiguo, tinta negra, caligrafía perfecta. Las palabras hablaban de su alma de una manera que nadie más había logrado.", new DateTime(2024, 11, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), false, true, new DateTime(2024, 11, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, "El Primer Mensaje", new DateTime(2024, 11, 5, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 7, 2, "Emma se obsesionó con encontrar al autor. Cada pista la acercaba más a descubrir una verdad que cambiaría todo lo que creía saber sobre el amor.", new DateTime(2024, 11, 6, 0, 0, 0, 0, DateTimeKind.Unspecified), false, true, new DateTime(2024, 11, 6, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, "Buscando al Poeta", new DateTime(2024, 11, 6, 0, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 8, 3, "Cuando finalmente lo vio, entendió por qué había permanecido en las sombras. No era quien esperaba. Era alguien que había estado frente a ella todo el tiempo.", new DateTime(2024, 11, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), false, true, new DateTime(2024, 11, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, "El Encuentro", new DateTime(2024, 11, 7, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                    { 1, 1, "The last ember flickered in the ancient hearth, its crimson glow casting dancing shadows across the stone chamber. Aria pressed her palm against the cold wall, feeling the pulse of old magic fade beneath her fingertips. The elders had warned her this day would come, but she never imagined it would arrive so soon.", new DateTime(2024, 11, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), false, true, new DateTime(2024, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "The Dying Light", new DateTime(2024, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 2, 2, "Legends spoke of a time when fire answered to will alone, when the chosen could summon flames with a thought. Aria traced the ancient runes carved into the hearth's edge, their meaning lost to time but their power still palpable in the air around her.", new DateTime(2024, 11, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), false, true, new DateTime(2024, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "Whispers of the Old Magic", new DateTime(2024, 11, 15, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 3, 3, "With nothing but a weathered map and the dying ember carefully preserved in a crystal vial, Aria set out into the Frozen Wastes. The wind howled around her like vengeful spirits, but she pressed forward, knowing that somewhere beyond the ice lay the Temple of First Flames.", new DateTime(2024, 11, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), false, true, new DateTime(2024, 11, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, "The Journey Begins", new DateTime(2024, 11, 16, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 4, 1, "The temporal device hummed to life, reality bending around her like ripples in a pond. Dr. Sarah Chen gripped the controls as the laboratory dissolved into streams of light. When the world solidified again, she stood in the same room—but everything was different.", new DateTime(2024, 11, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), false, true, new DateTime(2024, 11, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "First Jump", new DateTime(2024, 11, 20, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 5, 2, "The equations didn't lie. Every change she made created divergent timelines, each one branching into infinite possibilities. But some changes—the ones that mattered most—seemed to resist her alterations, as if the universe itself was protecting certain outcomes.", new DateTime(2024, 11, 19, 0, 0, 0, 0, DateTimeKind.Unspecified), false, true, new DateTime(2024, 11, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, "Paradox", new DateTime(2024, 11, 21, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 6, 1, "Inspector Morrison surveyed the crime scene through the thick mist that perpetually shrouded Whitehaven. The victim lay exactly like the others—positioned with unnatural precision, a single white rose clutched in lifeless fingers. This was the seventh body in as many weeks.", new DateTime(2024, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), false, true, new DateTime(2024, 11, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, "Fog and Bone", new DateTime(2024, 11, 25, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 7, 2, "The only common thread between victims was their connection to the old Ashworth estate. Each had worked there at some point—gardeners, servants, tutors. And each had left under mysterious circumstances years before meeting their untimely end.", new DateTime(2024, 11, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), false, true, new DateTime(2024, 11, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, "The Rose Garden Mystery", new DateTime(2024, 11, 26, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 8, 1, "The wedding season had arrived, and Rosewood Avenue's two flower shops stood directly across from each other like dueling opponents. Maya's Petals and Thornwood Gardens had been competing for the same clients for five years, their rivalry as famous as their arrangements.", new DateTime(2024, 11, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), false, true, new DateTime(2024, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 4, "Rival Blooms", new DateTime(2024, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 9, 1, "The star maps ended here, at the edge of explored space. Captain Elena Voss checked her instruments one more time before initiating the quantum jump. Her small vessel, the Cartographer's Dream, shuddered as it pierced the veil into unknown territory.", new DateTime(2024, 12, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), false, true, new DateTime(2024, 12, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 5, "Uncharted Sector", new DateTime(2024, 12, 5, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 10, 2, "Three days into uncharted space, the sensors picked up something impossible—a repeating pattern of electromagnetic pulses. Artificial. Deliberate. And according to her dating algorithms, approximately ten thousand years old.", new DateTime(2024, 12, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), false, true, new DateTime(2024, 12, 6, 0, 0, 0, 0, DateTimeKind.Unspecified), 5, "The Signal", new DateTime(2024, 12, 6, 0, 0, 0, 0, DateTimeKind.Unspecified) }
+                });
+
+            migrationBuilder.InsertData(
+                table: "CompletedStories",
+                columns: new[] { "CompletedId", "CompletedAt", "StoryId", "UserId" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2024, 11, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 1 },
+                    { 2, new DateTime(2024, 12, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), 4, 3 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Favorites",
+                columns: new[] { "FavoriteId", "AddedAt", "StoryId", "UserId" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2024, 11, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1 },
+                    { 2, new DateTime(2024, 11, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, 1 },
+                    { 3, new DateTime(2024, 11, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 2 },
+                    { 4, new DateTime(2024, 11, 17, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 3 },
+                    { 5, new DateTime(2024, 12, 6, 0, 0, 0, 0, DateTimeKind.Unspecified), 5, 4 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Likes",
+                columns: new[] { "LikeId", "CreatedAt", "StoryId", "UserId" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2024, 11, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1 },
+                    { 2, new DateTime(2024, 11, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 1 },
+                    { 3, new DateTime(2024, 11, 17, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 2 },
+                    { 4, new DateTime(2024, 11, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, 3 },
+                    { 5, new DateTime(2024, 11, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 4 },
+                    { 6, new DateTime(2024, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 5 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "ReadingProgress",
+                columns: new[] { "ProgressId", "ChapterId", "LastReadAt", "ScrollPosition", "StoryId", "UserId" },
+                values: new object[,]
+                {
+                    { 1, 2, new DateTime(2024, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 0.34999999999999998, 1, 1 },
+                    { 2, 1, new DateTime(2024, 11, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), 0.80000000000000004, 3, 1 },
+                    { 3, 2, new DateTime(2024, 12, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), 0.14999999999999999, 2, 2 },
+                    { 4, 3, new DateTime(2024, 11, 29, 0, 0, 0, 0, DateTimeKind.Unspecified), 0.94999999999999996, 1, 3 }
                 });
 
             migrationBuilder.CreateIndex(
@@ -337,6 +408,16 @@ namespace LiteraVerseAPI.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Favorites_UserId",
                 table: "Favorites",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Likes_StoryId",
+                table: "Likes",
+                column: "StoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Likes_UserId",
+                table: "Likes",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
@@ -381,6 +462,9 @@ namespace LiteraVerseAPI.Migrations
 
             migrationBuilder.DropTable(
                 name: "Genres");
+
+            migrationBuilder.DropTable(
+                name: "Likes");
 
             migrationBuilder.DropTable(
                 name: "PendingSync");

@@ -1,9 +1,18 @@
-﻿namespace LiteraVerseApi.DTOs;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace LiteraVerseApi.DTOs;
 
 public class ReadingProgressRequest
 {
-    public required int UserId { get; set; }
-    public required int StoryId { get; set; }
-    public required int ChapterId { get; set; }
-    public double ScrollPosition { get; set; }
+    [Required]
+    public int UserId { get; set; }
+
+    [Required]
+    public int StoryId { get; set; }
+
+    [Required]
+    public int ChapterId { get; set; }
+
+    [Range(0, 1)]
+    public double ScrollPosition { get; set; } = 0;
 }

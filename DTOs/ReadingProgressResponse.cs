@@ -8,4 +8,6 @@ public class ReadingProgressResponse
     public int ChapterId { get; set; }
     public double ScrollPosition { get; set; }
     public DateTime LastReadAt { get; set; }
+    public string? StoryTitle { get; set; }
+    public string? ChapterTitle { get; set; }
 }
