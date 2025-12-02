@@ -70,7 +70,7 @@ public class AuthController : ControllerBase
 
         if (existingUser != null)
         {
-            return BadRequest(new { message = "El nombre de usuario ya existe" });
+            return Conflict(new { message = "El nombre de usuario ya existe" });
         }
 
         var hashedPassword = PasswordHasher.HashPassword(request.Password);
@@ -116,14 +116,13 @@ public class AuthController : ControllerBase
         var session = await _context.Sessions
             .FirstOrDefaultAsync(s => s.Token == token && s.IsActive);
 
-        if (session == null)
+        if (session != null)
         {
-            return NotFound(new { message = "Sesión no encontrada o ya cerrada" });
+            session.IsActive = false;
+            session.LastActivity = DateTime.UtcNow;
+            _context.Sessions.Update(session);
+            await _context.SaveChangesAsync();
         }
-
-        session.IsActive = false;
-        _context.Sessions.Update(session);
-        await _context.SaveChangesAsync();
 
         return Ok(new { message = "Sesión cerrada exitosamente" });
     }
@@ -139,8 +138,9 @@ public class AuthController : ControllerBase
         }
 
         var userId = principal.FindFirst("userId")?.Value;
+        var userName = principal.FindFirst("userName")?.Value;
 
-        return Ok(new { isValid = true, userId = int.Parse(userId!) });
+        return Ok(new { isValid = true, userId = int.Parse(userId!), userName });
     }
 
     [HttpGet("Sessions/{userId}")]

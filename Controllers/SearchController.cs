@@ -13,10 +13,11 @@ public class SearchController(Contexto context) : ControllerBase
     public async Task<ActionResult<IEnumerable<StoryResponse>>> Search(
         [FromQuery] string? query,
         [FromQuery] string? genre,
-        [FromQuery] string? status)
+        [FromQuery] string? status,
+        [FromQuery] string? sortBy)
     {
         var storiesQuery = context.Stories
-            .Include(s => s.User) 
+            .Include(s => s.User)
             .AsQueryable();
 
         if (!string.IsNullOrEmpty(query))
@@ -53,8 +54,14 @@ public class SearchController(Contexto context) : ControllerBase
             storiesQuery = storiesQuery.Where(s => s.IsPublished);
         }
 
+        storiesQuery = sortBy?.ToLower() switch
+        {
+            "popular" => storiesQuery.OrderByDescending(s => s.ViewCount),
+            "title" => storiesQuery.OrderBy(s => s.Title),
+            _ => storiesQuery.OrderByDescending(s => s.UpdatedAt)
+        };
+
         var results = await storiesQuery
-            .OrderByDescending(s => s.UpdatedAt)
             .Select(s => new StoryResponse
             {
                 StoryId = s.StoryId,

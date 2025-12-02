@@ -99,13 +99,13 @@ public class ExploreController(Contexto context) : ControllerBase
         return Ok(res);
     }
 
-    [HttpGet("genre/{genre}")]
-    public async Task<ActionResult<IEnumerable<StoryResponse>>> GetByGenre(string genre)
+    [HttpGet("genre/{genreName}")]
+    public async Task<ActionResult<IEnumerable<StoryResponse>>> GetStoriesByGenre(string genreName)
     {
         var res = await context.Stories
             .Include(s => s.User)
-            .Where(s => s.IsPublished && !s.IsDraft && s.Genre == genre)
-            .OrderByDescending(s => s.ViewCount)
+            .Where(s => s.IsPublished && !s.IsDraft && s.Genre == genreName)
+            .OrderByDescending(s => s.PublishedAt)
             .Select(s => new StoryResponse
             {
                 StoryId = s.StoryId,
