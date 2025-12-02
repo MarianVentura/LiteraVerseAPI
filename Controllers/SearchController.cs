@@ -1,6 +1,5 @@
 ﻿using LiteraVerseApi.DAL;
 using LiteraVerseApi.DTOs;
-using Mapster;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,14 +15,21 @@ public class SearchController(Contexto context) : ControllerBase
         [FromQuery] string? genre,
         [FromQuery] string? status)
     {
-        var storiesQuery = context.Stories.AsQueryable();
+        var storiesQuery = context.Stories
+            .Include(s => s.User) 
+            .AsQueryable();
 
         if (!string.IsNullOrEmpty(query))
         {
+            var q = query.Trim();
+            var qLower = q.ToLower();
+
             storiesQuery = storiesQuery.Where(s =>
-                s.Title.Contains(query) ||
-                s.Synopsis.Contains(query) ||
-                s.Tags!.Contains(query));
+                (!string.IsNullOrEmpty(s.Title) && s.Title.ToLower().Contains(qLower)) ||
+                (!string.IsNullOrEmpty(s.Synopsis) && s.Synopsis.ToLower().Contains(qLower)) ||
+                (!string.IsNullOrEmpty(s.Tags) && s.Tags!.ToLower().Contains(qLower)) ||
+                (s.User != null && !string.IsNullOrEmpty(s.User.UserName) && s.User.UserName.ToLower().Contains(qLower))
+            );
         }
 
         if (!string.IsNullOrEmpty(genre))
@@ -47,9 +53,27 @@ public class SearchController(Contexto context) : ControllerBase
             storiesQuery = storiesQuery.Where(s => s.IsPublished);
         }
 
-        return await storiesQuery
+        var results = await storiesQuery
             .OrderByDescending(s => s.UpdatedAt)
-            .ProjectToType<StoryResponse>()
+            .Select(s => new StoryResponse
+            {
+                StoryId = s.StoryId,
+                UserId = s.UserId,
+                UserName = s.User != null ? s.User.UserName : null,
+                Title = s.Title,
+                Synopsis = s.Synopsis,
+                CoverImageUrl = s.CoverImageUrl,
+                IsDraft = s.IsDraft,
+                IsPublished = s.IsPublished,
+                CreatedAt = s.CreatedAt,
+                PublishedAt = s.PublishedAt,
+                UpdatedAt = s.UpdatedAt,
+                ViewCount = s.ViewCount,
+                Genre = s.Genre,
+                Tags = s.Tags
+            })
             .ToListAsync();
+
+        return Ok(results);
     }
 }
