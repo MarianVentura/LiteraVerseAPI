@@ -4,6 +4,7 @@ public class StoryResponse
 {
     public int StoryId { get; set; }
     public int UserId { get; set; }
+    public string? UserName { get; set; }
     public required string Title { get; set; }
     public string Synopsis { get; set; } = string.Empty;
     public string? CoverImageUrl { get; set; }
