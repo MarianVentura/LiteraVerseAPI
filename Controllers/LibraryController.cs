@@ -20,8 +20,24 @@ public class LibraryController(
         var favorites = await context.Favorites
             .Where(f => f.UserId == userId)
             .Include(f => f.Story)
-            .Select(f => f.Story)
-            .ProjectToType<StoryResponse>()
+                .ThenInclude(s => s.User)
+            .Select(f => new StoryResponse
+            {
+                StoryId = f.Story.StoryId,
+                UserId = f.Story.UserId,
+                UserName = f.Story.User != null ? f.Story.User.UserName : null,
+                Title = f.Story.Title,
+                Synopsis = f.Story.Synopsis,
+                CoverImageUrl = f.Story.CoverImageUrl,
+                IsDraft = f.Story.IsDraft,
+                IsPublished = f.Story.IsPublished,
+                CreatedAt = f.Story.CreatedAt,
+                PublishedAt = f.Story.PublishedAt,
+                UpdatedAt = f.Story.UpdatedAt,
+                ViewCount = f.Story.ViewCount,
+                Genre = f.Story.Genre,
+                Tags = f.Story.Tags
+            })
             .ToListAsync();
 
         return Ok(favorites);
@@ -115,8 +131,24 @@ public class LibraryController(
         var completed = await context.CompletedStories
             .Where(c => c.UserId == userId)
             .Include(c => c.Story)
-            .Select(c => c.Story)
-            .ProjectToType<StoryResponse>()
+                .ThenInclude(s => s.User)
+            .Select(c => new StoryResponse
+            {
+                StoryId = c.Story.StoryId,
+                UserId = c.Story.UserId,
+                UserName = c.Story.User != null ? c.Story.User.UserName : null,
+                Title = c.Story.Title,
+                Synopsis = c.Story.Synopsis,
+                CoverImageUrl = c.Story.CoverImageUrl,
+                IsDraft = c.Story.IsDraft,
+                IsPublished = c.Story.IsPublished,
+                CreatedAt = c.Story.CreatedAt,
+                PublishedAt = c.Story.PublishedAt,
+                UpdatedAt = c.Story.UpdatedAt,
+                ViewCount = c.Story.ViewCount,
+                Genre = c.Story.Genre,
+                Tags = c.Story.Tags
+            })
             .ToListAsync();
 
         return Ok(completed);
